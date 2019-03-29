@@ -65,7 +65,7 @@ const agentAssign = (num) => {
   }
 }
 
-//////////INSERTION///////////////// 
+//////////INSERTION///////////////// MUST BE RUN ON DB STARTUP TO AVERT ERRORS //////////////////
 function insertIntoDb(){
   let agentCount = 1
   for(let i = agentCount; i < nameArr.length && i <= 100; i++){
@@ -78,7 +78,6 @@ function insertIntoDb(){
 }
 
 //////////FUNCTION TO RANDOMLY RETRIEVE DATA FROM THE DATABASE/////////////////
-
 const getFourRandomAgents = async (cb) => {
   let finalResultsArr = []
   let filterOne = { agent_type: { $in: 'listing' } } 
