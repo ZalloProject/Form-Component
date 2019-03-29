@@ -6,7 +6,10 @@ const random = require('mongoose-simple-random');
 mongoose.connect('mongodb://localhost/form')
 
 let agentSchema = mongoose.Schema({ 
-  agent_name: String,
+  agent_name: {
+    type: String,
+    unique: true,
+  },
   recent_sales: Number, 
   phone: String,
   agent_type: String,
@@ -31,14 +34,14 @@ const randomNumberGen = (max, options) => {
     var str = ((Math.random() * (max - min + 1)) + min).toString();
     return eval(str.slice(0, 4))
   } else if (typeof options === 'number'){
-    if(options % 10 === 0) {
+    if(options % 10 === 0) { 
       return 1
-    }
+    } 
   }
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-const generatePhoneNumber = () => { 
+const generatePhoneNumber = () => {
   let phoneNum = "("
   for (var i = 0; i < 3; i++){ 
     phoneNum+= randomNumberGen(9) 
@@ -62,43 +65,42 @@ const agentAssign = (num) => {
   }
 }
 
-let agentCount = 1
-
-//////////INSERTION/////////////////
-for(let i = agentCount; i < nameArr.length && i <= 100; i++){
-  Agent.insertMany([
-    {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
-    agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
-    agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
-  ])
+//////////INSERTION///////////////// 
+function insertIntoDb(){
+  let agentCount = 1
+  for(let i = agentCount; i < nameArr.length && i <= 100; i++){
+    Agent.insertMany([
+      {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
+      agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
+      agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
+    ])
+  }
 }
 
 //////////FUNCTION TO RANDOMLY RETRIEVE DATA FROM THE DATABASE/////////////////
 
 const getFourRandomAgents = async (cb) => {
-  
   let finalResultsArr = []
-  let filterOne = { agent_type: { $in: 'listing' } }
+  let filterOne = { agent_type: { $in: 'listing' } } 
   let filterThree = { agent_type: { $in: 'premier' } }
   let optionsThree = { limit: 3 } 
 
   try {
-    Agent.findRandom(filterOne, {}, {}, (err, one) => {
+    await Agent.findRandom(filterOne, {}, {}, (err, one) => {
     if(err){
       console.error(err)
     } else {
       finalResultsArr.push(one[0]._doc)
     }
   });
-  Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
+  await Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
     if(err){
       console.error(err)
     } else {
       for(var i = 0; i < three.length; i++){
-        finalResultsArr.push(three[i]._doc) 
+        finalResultsArr.push(three[i]._doc)
       }
     }
-    // return await finalResultsArr 
     cb(finalResultsArr)
   })
   }

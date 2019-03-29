@@ -13,16 +13,26 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyParser.urlencoded({extended: true})) 
 app.use(bodyParser.json())
 
-//attempt at get requests using async and await
-app.get('/agents', async (req, res) =>{
-  try {
-    await dbHelper.getFourRandomAgents((data) => {
-    const json = JSON.stringify(data)
-    res.send(json)
+// //attempt at get requests using async and await
+// app.get('/agents', async (req, res) =>{
+//   try {
+//     await dbHelper.getFourRandomAgents((data) => {
+//     const json = JSON.stringify(data)
+//     res.send(json)
+//     })
+//   } catch (err) {
+//     console.log(err) 
+//   }
+// })
+
+//another way of get requests using promises
+app.get('/agents', (req, res)=>{
+  Promise.try(()=>{
+    dbHelper.getFourRandomAgents(data => {
+      const json = JSON.stringify(data)
+      res.send(json)
     })
-  } catch (err) {
-    console.log(err) 
-  }
+  })
 })
 
 //another way of get requests using promises
