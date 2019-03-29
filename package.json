@@ -8,17 +8,16 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest --detectOpenHandles --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon src/server.js"
   },
   "dependencies": {
-    "body": "^5.1.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
     "mongoose": "^5.4.20",
     "mongoose-simple-random": "^0.4.1",
-    "parser": "^0.1.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-star-rating-component": "^1.4.1",
@@ -31,6 +30,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^24.5.0",
     "webpack": "^4.29.6"
   }
 }
