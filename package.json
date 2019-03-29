@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest --detectOpenHandles --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon src/server.js"
   },
