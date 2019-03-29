@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "form",
   "version": "",
   "description": "",
   "author": "",
@@ -8,10 +8,25 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "test": "jest --detectOpenHandles --coverage",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "body": "^5.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.20",
+    "mongoose-simple-random": "^0.4.1",
+    "parser": "^0.1.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.5",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "webpack": "^4.29.6"
   }
 }
