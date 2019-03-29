@@ -7,23 +7,9 @@ const mockingoose = require('mockingoose').default;
 const mongoose = require('mongoose');
 
 const model = db.Agent;
-const getFourRandomAgents = db.getFourRandomAgents
-
-// let agentSchema_TEST = mongoose.Schema({ 
-//   agent_name_TEST: String,
-//   agent_number_TEST: Number
-// });
-
-// let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
-
-// //mock database setup
-// beforeAll(async () => {
-//   connection = await mongoose.connect('mongodb://localhost/form_TEST');
-// });
-
-// afterAll(async () => {
-//   await mongoose.connection.close();
-// });
+const getFourRandomAgents = db.getFourRandomAgents;
+const randomNumberGen = db.randomNumberGen;
+const generatePhoneNumber = db.generatePhoneNumber;
 
 beforeEach(() => {
   mockingoose.resetAll();
@@ -39,8 +25,12 @@ describe('Test the database and server', () => {
   });
 
   test('Database file should have a function called Get Four Random Agents', (done) => {
-    expect(db.getFourRandomAgents).toBeTruthy();
+    expect(getFourRandomAgents).toBeTruthy();
     done()
+  });
+
+  test('It should have an an Agent model', ()=>{
+    expect(model).toBeTruthy();
   });
 
   test('Get Four Random Agents Should Return Four Random Agents', async () => {
@@ -80,7 +70,34 @@ describe('Test the database and server', () => {
     });
   });
 
+  test('It should have a random number generator that generates within a range of numbers', (done) => {
+    const value = randomNumberGen(5, 'stars')
+    expect(value).toBeGreaterThanOrEqual(1)
+    expect(value).toBeLessThan(6)
+    done()
+  })
+
+  test('It should have a random phone number generator', (done) => {
+    const value = generatePhoneNumber()
+    expect(value).toHaveLength(14)
+    done()
+  })
+
   // test('It should insert sample data into the database', (done) => {
   //   return (db.insertIntoDb())
   // })
 });
+
+
+// const randomNumberGen = (max, options) => {
+//   if(options === 'stars'){
+//     var min = Math.ceil(2);
+//     var str = ((Math.random() * (max - min + 1)) + min).toString();
+//     return eval(str.slice(0, 4))
+//   } else if (typeof options === 'number'){
+//     if(options % 10 === 0) { 
+//       return 1
+//     } 
+//   }
+//   return Math.floor(Math.random() * Math.floor(max))
+// }

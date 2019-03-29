@@ -106,10 +106,12 @@ const getFourRandomAgents = async (cb) => {
   catch(e){
     return e
   }
-}
+};
 
 
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
-module.exports.agentSchema = agentSchema
-module.exports.insertIntoDb = insertIntoDb
+module.exports.agentSchema = agentSchema;
+module.exports.insertIntoDb = insertIntoDb;
+module.exports.randomNumberGen = randomNumberGen;
+module.exports.generatePhoneNumber = generatePhoneNumber;
