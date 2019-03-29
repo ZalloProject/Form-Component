@@ -112,3 +112,4 @@ const getFourRandomAgents = async (cb) => {
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
 module.exports.agentSchema = agentSchema
+module.exports.insertIntoDb = insertIntoDb

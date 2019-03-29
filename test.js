@@ -1,6 +1,25 @@
 const request = require('supertest');
-const app = require('./src/app')
-const db = require('./database/database')
+const app = require('./src/app');
+
+const db = require('./database/database');
+const mongoose = require('mongoose');
+import mockingoose from 'mockingoose';
+
+// let agentSchema_TEST = mongoose.Schema({ 
+//   agent_name_TEST: String,
+//   agent_number_TEST: Number
+// });
+
+// let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
+
+// //mock database setup
+// beforeAll(async () => {
+//   connection = await mongoose.connect('mongodb://localhost/form_TEST');
+// });
+
+// afterAll(async () => {
+//   await mongoose.connection.close();
+// });
 
  //test example
 describe('Test the agents path', () => {
@@ -32,5 +51,9 @@ describe('Test the agents path', () => {
     expect(db.agentSchema.obj.num_ratings).toBeDefined()
     expect(db.agentSchema.obj.agent_photo).toBeDefined()
     done()
+  })
+
+  test('It should insert sample data into the database', (done) => {
+
   })
 })
