@@ -13,6 +13,23 @@ const generatePhoneNumber = db.generatePhoneNumber;
 const agentAssign = db.agentAssign;
 const insertIntoDb = db.insertIntoDb;
 
+// mongoose.connect('mongodb://localhost/form_TEST')
+
+// let agentSchema_TEST = mongoose.Schema({ 
+//   agent_name_TEST: {
+//     type: String,
+//     unique: true,
+//   },
+//   recent_sales_TEST: Number, 
+//   phone_TEST: String,
+//   agent_type_TEST: String,
+//   average_stars_TEST: Number,
+//   num_ratings_TEST: Number,
+//   agent_photo_TEST: String
+// });
+
+// let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
+
 beforeEach(() => {
   mockingoose.resetAll();
 });
@@ -94,20 +111,8 @@ describe('Test the database and server', () => {
   test('It should have a function designed to insert data into the database', (done) => {
     // const mockInsert = insertIntoDb
     // const mockVal = mockInsert()
-    // expect(mockVal).toBeUndefined()
-    expect(insertIntoDb).toBeTruthy()
+    // expect(mockVal).toBeUndefined() //this will throw an error even though it is testing functionality
+    expect(insertIntoDb).toBeTruthy() 
     done()
   })
 });
-
-
-// function insertIntoDb(){
-//   let agentCount = 1
-//   for(let i = agentCount; i < nameArr.length && i <= 100; i++){
-//     Agent.insertMany([
-//       {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
-//       agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
-//       agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
-//     ])
-//   }
-// }
