@@ -115,3 +115,4 @@ module.exports.agentSchema = agentSchema;
 module.exports.insertIntoDb = insertIntoDb;
 module.exports.randomNumberGen = randomNumberGen;
 module.exports.generatePhoneNumber = generatePhoneNumber;
+module.exports.agentAssign = agentAssign;

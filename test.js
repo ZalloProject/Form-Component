@@ -10,6 +10,7 @@ const model = db.Agent;
 const getFourRandomAgents = db.getFourRandomAgents;
 const randomNumberGen = db.randomNumberGen;
 const generatePhoneNumber = db.generatePhoneNumber;
+const agentAssign = db.agentAssign;
 
 beforeEach(() => {
   mockingoose.resetAll();
@@ -80,6 +81,12 @@ describe('Test the database and server', () => {
   test('It should have a random phone number generator', (done) => {
     const value = generatePhoneNumber()
     expect(value).toHaveLength(14)
+    done()
+  })
+
+  test('It should have an agent assigner function', (done) => {
+    const value = agentAssign()
+    expect(value).not.toBe(null)
     done()
   })
 
