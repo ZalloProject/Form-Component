@@ -68,7 +68,7 @@ let agentCount = 1
 for(let i = agentCount; i < nameArr.length && i <= 100; i++){
   Agent.insertMany([
     {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
-    agent_type: agentAssign(agentCount), average_stars: randomNumberGen(4, "stars"), num_ratings: randomNumberGen(500, agentCount), 
+    agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
     agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
   ])
 }
@@ -80,7 +80,7 @@ const getFourRandomAgents = async (cb) => {
   let finalResultsArr = []
   let filterOne = { agent_type: { $in: 'listing' } }
   let filterThree = { agent_type: { $in: 'premier' } }
-  let optionsThree = { limit: 3 }
+  let optionsThree = { limit: 3 } 
 
   try {
     Agent.findRandom(filterOne, {}, {}, (err, one) => {
@@ -95,7 +95,7 @@ const getFourRandomAgents = async (cb) => {
       console.error(err)
     } else {
       for(var i = 0; i < three.length; i++){
-        finalResultsArr.push(three[i]._doc)
+        finalResultsArr.push(three[i]._doc) 
       }
     }
     // return await finalResultsArr 
