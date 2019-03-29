@@ -22,4 +22,15 @@ describe('Test the agents path', () => {
       done()
     }))
   })
+
+  test('Database should have these items in schema: name, sales, phone, type, average stars, ratings, and photo', (done) => {
+    expect(db.agentSchema.obj.agent_name).toBeDefined()
+    expect(db.agentSchema.obj.recent_sales).toBeDefined()
+    expect(db.agentSchema.obj.phone).toBeDefined()
+    expect(db.agentSchema.obj.agent_type).toBeDefined()
+    expect(db.agentSchema.obj.average_stars).toBeDefined()
+    expect(db.agentSchema.obj.num_ratings).toBeDefined()
+    expect(db.agentSchema.obj.agent_photo).toBeDefined()
+    done()
+  })
 })

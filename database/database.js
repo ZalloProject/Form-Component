@@ -111,4 +111,4 @@ const getFourRandomAgents = async (cb) => {
 
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
-// db.agents.createIndex( { "agent_name": 1 }, { unique: true } ) will only allow unique values of names in db
+module.exports.agentSchema = agentSchema
