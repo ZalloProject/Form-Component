@@ -11,6 +11,7 @@ const getFourRandomAgents = db.getFourRandomAgents;
 const randomNumberGen = db.randomNumberGen;
 const generatePhoneNumber = db.generatePhoneNumber;
 const agentAssign = db.agentAssign;
+const insertIntoDb = db.insertIntoDb;
 
 beforeEach(() => {
   mockingoose.resetAll();
@@ -90,21 +91,23 @@ describe('Test the database and server', () => {
     done()
   })
 
-  // test('It should insert sample data into the database', (done) => {
-  //   return (db.insertIntoDb())
-  // })
+  test('It should have a function designed to insert data into the database', (done) => {
+    // const mockInsert = insertIntoDb
+    // const mockVal = mockInsert()
+    // expect(mockVal).toBeUndefined()
+    expect(insertIntoDb).toBeTruthy()
+    done()
+  })
 });
 
 
-// const randomNumberGen = (max, options) => {
-//   if(options === 'stars'){
-//     var min = Math.ceil(2);
-//     var str = ((Math.random() * (max - min + 1)) + min).toString();
-//     return eval(str.slice(0, 4))
-//   } else if (typeof options === 'number'){
-//     if(options % 10 === 0) { 
-//       return 1
-//     } 
+// function insertIntoDb(){
+//   let agentCount = 1
+//   for(let i = agentCount; i < nameArr.length && i <= 100; i++){
+//     Agent.insertMany([
+//       {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
+//       agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
+//       agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
+//     ])
 //   }
-//   return Math.floor(Math.random() * Math.floor(max))
 // }
