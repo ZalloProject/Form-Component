@@ -13,6 +13,7 @@
     "server-dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
