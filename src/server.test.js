@@ -1,191 +1,37 @@
-// const request = require('supertest');
-// const app = require('../src/app.js');
-// const mongoose = require('mongoose');
-
-// const mock = require('../database/mockDatabase');
-
-// // const mockingoose = require('mockingoose').default;
-// // beforeEach(() => {
-// //   mockingoose.resetAll();
-// // });
-
-// const model = mock.AgentTest;
-// const getFourRandomAgents = mock.getFourRandomAgents;
-// const randomNumberGen = mock.randomNumberGen;
-// const generatePhoneNumber = mock.generatePhoneNumber;
-// const agentAssign = mock.agentAssign;
-// const insertIntoDb = mock.insertIntoDb;
-// const deleteAll = mock.deleteAll;
-// const agentSchema = mock.agentSchemaTest;
-
-
-// beforeAll(() => {
-//   mock.deleteAll(() => {
-//     mock.insertIntoDb();
-//   });
-// });
-
-// describe('Test that the server route exists', () => {
-
-//   test('It should respond to a get request', (done) => {
-//     return request(app).get("/agents").then(response => {
-//       expect(response.statusCode).toBe(200);
-//       done();
-//     });
-//   });
-// });
-
-// describe('Test the database', () => {
-//   // insertIntoDb()
-//   // test('It should insert data into the database', (done) => {
-//   //   new Promise = insertIntoDb()
-//   //   .then(() => {
-
-//   //   })
-//   //   done()
-//   // });
-
-//   test('Database file should have a function called Get Four Random Agents', (done) => {
-//     expect(getFourRandomAgents).toBeTruthy();
-//     done()
-//   });
-
-//   test('It should have an an Agent model', ()=>{
-//     expect(model).toBeTruthy();
-//   });
-
-//   test('Get Four Random Agents Should Return Four Random Agents', () => {
-//     (getFourRandomAgents(data => {
-//       console.log(data);
-//       expect(data).toHaveLength(4);
-//       deleteAll()
-//     }));
-//   });
-
-//   test('Database should have these items in schema: name, sales, phone, type, average stars, ratings, and photo', (done) => {
-//     expect(agentSchema.agent_name_TEST).toBeDefined();
-//     expect(agentSchema.recent_sales_TEST).toBeDefined();
-//     expect(agentSchema.phone_TEST).toBeDefined();
-//     expect(agentSchema.agent_type_TEST).toBeDefined();
-//     expect(agentSchema.average_stars_TEST).toBeDefined();
-//     expect(agentSchema.num_ratings_TEST).toBeDefined();
-//     expect(agentSchema.agent_photo_TEST).toBeDefined();
-//     done();
-//   });
-
-//   // test('It should pass a sample db test', (done)=> { //THIS WILL NOT WORK UPON RELOAD OF DATA
-//   //   const _doc = {
-//   //     _id: "5c9e7afc717b77527eb9fc0d",
-//   //     "recent_sales" : 8,
-//   //     "phone" : "(512) 017-3307",
-//   //     "agent_type" : "listing",
-//   //     "average_stars" : 5.9,
-//   //     "num_ratings" : 297,
-//   //     "agent_photo" : "https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor18.jpg",
-//   //   }
-//   //   mockingoose.Agent.toReturn(_doc, 'findOne')
-//   //   return model
-//   //   .findById({ _id: "5c9e7afc717b77527eb9fc0d" })
-//   //   .then(doc => {
-//   //     expect(JSON.parse(JSON.stringify(doc))).toMatchObject(_doc);
-//   //     done();
-//   //   });
-//   // });
-
-//   test('It should have a random number generator that generates within a range of numbers', (done) => {
-//     const value = randomNumberGen(5, 'stars')
-//     expect(value).toBeGreaterThanOrEqual(1)
-//     expect(value).toBeLessThan(6)
-//     done()
-//   })
-
-//   test('It should have a random phone number generator', (done) => {
-//     const value = generatePhoneNumber()
-//     expect(value).toHaveLength(14)
-//     done()
-//   })
-
-//   test('It should have an agent assigner function', (done) => {
-//     const value = agentAssign()
-//     expect(value).not.toBe(null)
-//     done()
-//   })
-
-//   test('It should have a function designed to insert data into the database', (done) => {
-//     expect(insertIntoDb).toBeTruthy() 
-//     done()
-//   });
-
-//   deleteAll()
-// });
-
-// // //CLEAR ALL MOCK DATA//
-// // (function deleteAll(cb) {
-// //   model.deleteMany({}, () => {
-// //     cb();
-// //   });
-// // })();
-
-// //TRASH PILE
-//     //   return insertIntoDb()
-//   //   .catch(err => {
-//   //     expect(err.message).toBe('THERE IS AN ERROR')
-//   //     done()
-//   //   })
-//   // })    
-  
-//   // const mockInsert = insertIntoDb
-//     // const mockVal = mockInsert()
-//     // expect(mockVal).toBeUndefined() //this will throw an error even though it is testing functionality
-//     // expect(insertIntoDb).toBeTruthy() 
-//     // done()
-
-
 const request = require('supertest');
 const app = require('../src/app');
-
-const db = require('../database/database');
-
 const mockingoose = require('mockingoose').default;
 const mongoose = require('mongoose');
 
+const db = require('../database/database');
+const mock = require('../database/mockDatabase')
+
+//not touching database
 const model = db.Agent;
 const getFourRandomAgents = db.getFourRandomAgents;
 const randomNumberGen = db.randomNumberGen;
 const generatePhoneNumber = db.generatePhoneNumber;
 const agentAssign = db.agentAssign;
-const insertIntoDb = db.insertIntoDb;
 
-// mongoose.connect('mongodb://localhost/form_TEST')
-
-// let agentSchema_TEST = mongoose.Schema({ 
-//   agent_name_TEST: {
-//     type: String,
-//     unique: true,
-//   },
-//   recent_sales_TEST: Number, 
-//   phone_TEST: String,
-//   agent_type_TEST: String,
-//   average_stars_TEST: Number,
-//   num_ratings_TEST: Number,
-//   agent_photo_TEST: String
-// });
-
-// let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
+//touching mock database
+const insertIntoDb = mock.insertIntoDb;
+const deleteAll = mock.deleteAll;
+const AgentTest = mock.AgentTest;
 
 beforeEach(() => {
   mockingoose.resetAll();
 });
 
- //test example
-describe('Test the database and server', () => {
+describe('Test the server', () => {
   test('It should respond to a get request', (done) => {
     return request(app).get("/").then(response => {
       expect(response.statusCode).toBe(200);
       done();
     });
   });
+});
 
+describe('Test the database,', () => {
   test('Database file should have a function called Get Four Random Agents', (done) => {
     expect(getFourRandomAgents).toBeTruthy();
     done()
@@ -213,7 +59,7 @@ describe('Test the database and server', () => {
     done();
   });
 
-  test('It should pass a sample db test', (done)=> { //THIS WILL NOT WORK UPON RELOAD OF DATA
+  test('It should pass a sample db test', (done) => { //THIS WILL NOT WORK UPON RELOAD OF DATA
     const _doc = {
       _id: "5c9e7afc717b77527eb9fc0d",
       "recent_sales" : 8,
@@ -251,11 +97,29 @@ describe('Test the database and server', () => {
     done()
   })
 
-  // test('It should have a function designed to insert data into the database', (done) => {
-  //   expect(insertIntoDb).toBeTruthy() 
-  //   done()
+  test('It should have a function designed to insert data into the database', (done) => {
+    expect(insertIntoDb).toBeTruthy() 
+    done()
+  });
+
+  // test('It should insert sample data into a mock database', async (done) => {
+  //   await insertIntoDb()
+  //   try {
+
+  //   } catch {
+
+  //   }
   // });
 });
+
+    // return new Promise(resolve => {
+    //   insertIntoDb()
+    // }).then(() => {
+    //     deleteAll(()=>{})
+    //   }).then(()=> {
+    //     done()
+    //   });
+
 
 //TRASH PILE
     //   return insertIntoDb()

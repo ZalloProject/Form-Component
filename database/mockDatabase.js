@@ -85,31 +85,36 @@ function insertIntoDb(){
   }
 }
 
-//////////RANDOM DATA RETRIEVAL FUNCTIONS/////////////////
-const getFourRandomAgents = (cb) => {
+//////////FUNCTION TO RANDOMLY RETRIEVE DATA FROM THE DATABASE/////////////////
+const getFourRandomAgents = async (cb) => {
   let finalResultsArr = []
   let filterOne = { agent_type: { $in: 'listing' } } 
   let filterThree = { agent_type: { $in: 'premier' } }
   let optionsThree = { limit: 3 } 
 
-  AgentTest.findRandom(filterOne, {}, {}, (err, one) => {
+  try {
+    await Agent.findRandom(filterOne, {}, {}, (err, one) => {
     if(err){
       console.error(err)
     } else {
-      finalResultsArr.push(one[0]._doc)
-      AgentTest.findRandom(filterThree, {}, optionsThree, (err, three) => {
-        if(err){
-          console.error(err)
-        } else {
-        for(var i = 0; i < three.length; i++){
-          finalResultsArr.push(three[i]._doc)
-        }
-      }
-        cb(finalResultsArr)
-      })
+      finalResultsArr.push(one[0])
     }
   });
-}
+  await Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
+    if(err){
+      console.error(err)
+    } else {
+      for(var i = 0; i < three.length; i++){
+        finalResultsArr.push(three[i])
+      }
+    }
+    cb(finalResultsArr)
+  })
+  }
+  catch(e){
+    return e
+  }
+};
 
 const deleteAll = (cb) => {
   AgentTest.deleteMany({}, () => {

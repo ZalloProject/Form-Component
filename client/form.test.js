@@ -11,4 +11,3 @@ describe ('Form', () => {
     expect(wrapper.find(".form-outerrr-container").exists()).toBe(false);
   });
 });
-

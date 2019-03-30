@@ -3,15 +3,14 @@ import $ from 'jquery'
 import StarRatingComponent from 'react-star-rating-component';
 
 class Form extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       agents: [],
-      id: 1
     }
   }
 
-  componentWillMount(){ 
+  componentWillMount() { 
     $.get('/agents')
     .then((agentData)=>{
       let parsedAgentData = JSON.parse(agentData)
