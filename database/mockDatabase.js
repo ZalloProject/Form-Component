@@ -1,30 +1,29 @@
 const mongoose = require('mongoose')
 const nameArr = require ('./nameArr')
 const random = require('mongoose-simple-random');
-// const helpers = require('./helpers')
 
-mongoose.connect('mongodb://localhost/form')
+mongoose.connect('mongodb://localhost/form_TEST')
 
-let agentSchema = mongoose.Schema({ 
-  agent_name: {
+let agentSchema_TEST = mongoose.Schema({ 
+  agent_name_TEST: {
     type: String,
     unique: true,
   },
-  recent_sales: Number, 
-  phone: String,
-  agent_type: String,
-  average_stars: Number,
-  num_ratings: Number,
-  agent_photo: String
+  recent_sales_TEST: Number, 
+  phone_TEST: String,
+  agent_type_TEST: String,
+  average_stars_TEST: Number,
+  num_ratings_TEST: Number,
+  agent_photo_TEST: String
 });
-agentSchema.plugin(random)
+agentSchema_TEST.plugin(random)
 
-let Agent = mongoose.model('Agent', agentSchema)
+let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('Connected to Mongo!')
+  console.log('Connected to Mongo TEST DATABASE!')
 });
 
 //////////FUNCTIONS TO RANDOMLY GENERATE DATA FOR THE DATABASE/////////////////
@@ -68,7 +67,7 @@ const agentAssign = (num) => {
   }
 }
 
-//////////INSERTION///////////////// MUST BE RUN ON DB STARTUP TO AVERT ERRORS //////////////////
+//////////INSERTION INTO DATABASE/////////////////
 function insertIntoDb(){
   let agentCount = 1
   for(let i = 0; i < nameArr.length && i <= 100; i++){
@@ -78,7 +77,7 @@ function insertIntoDb(){
       agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
     ], (err, docs) => {
       if(err){
-        console.error("THERE IS AN ERROR") 
+        console.error("THERE IS AN ERROR-MOCK DATABASE") 
       } else {
         return docs 
       }
@@ -86,7 +85,7 @@ function insertIntoDb(){
   }
 }
 
-//////////FUNCTION TO RANDOMLY RETRIEVE DATA FROM THE DATABASE/////////////////
+//////////RANDOM DATA RETRIEVAL FUNCTIONS/////////////////
 const getFourRandomAgents = async (cb) => {
   let finalResultsArr = []
   let filterOne = { agent_type: { $in: 'listing' } } 
@@ -117,6 +116,12 @@ const getFourRandomAgents = async (cb) => {
   }
 };
 
+//CLEAR ALL MOCK DATA//
+const deleteAll = (cb) => {
+  Agent_TEST.deleteMany({}, () => {
+    cb();
+  });
+};
 
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
@@ -125,3 +130,4 @@ module.exports.insertIntoDb = insertIntoDb;
 module.exports.randomNumberGen = randomNumberGen;
 module.exports.generatePhoneNumber = generatePhoneNumber;
 module.exports.agentAssign = agentAssign; 
+module.exports.deleteAll = deleteAll;

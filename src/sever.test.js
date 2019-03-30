@@ -1,48 +1,33 @@
 const request = require('supertest');
 const app = require('../src/app');
 
-const db = require('../database/database');
+const mock = require('../database/mockDatabase');
 
 const mockingoose = require('mockingoose').default;
 const mongoose = require('mongoose');
 
-const model = db.Agent;
-const getFourRandomAgents = db.getFourRandomAgents;
-const randomNumberGen = db.randomNumberGen;
-const generatePhoneNumber = db.generatePhoneNumber;
-const agentAssign = db.agentAssign;
-const insertIntoDb = db.insertIntoDb;
-
-// mongoose.connect('mongodb://localhost/form_TEST')
-
-// let agentSchema_TEST = mongoose.Schema({ 
-//   agent_name_TEST: {
-//     type: String,
-//     unique: true,
-//   },
-//   recent_sales_TEST: Number, 
-//   phone_TEST: String,
-//   agent_type_TEST: String,
-//   average_stars_TEST: Number,
-//   num_ratings_TEST: Number,
-//   agent_photo_TEST: String
-// });
-
-// let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
+const model = mock.Agent;
+const getFourRandomAgents = mock.getFourRandomAgents;
+const randomNumberGen = mock.randomNumberGen;
+const generatePhoneNumber = mock.generatePhoneNumber;
+const agentAssign = mock.agentAssign;
+const insertIntoDb = mock.insertIntoDb;
+const deleteAll = mock.deleteAll;
 
 beforeEach(() => {
   mockingoose.resetAll();
 });
 
- //test example
-describe('Test the database and server', () => {
+describe('Test that the server route exists', () => {
   test('It should respond to a get request', (done) => {
     return request(app).get("/").then(response => {
       expect(response.statusCode).toBe(200);
       done();
     });
   });
+});
 
+describe('Test the database', () => {
   test('Database file should have a function called Get Four Random Agents', (done) => {
     expect(getFourRandomAgents).toBeTruthy();
     done()
@@ -60,13 +45,13 @@ describe('Test the database and server', () => {
   });
 
   test('Database should have these items in schema: name, sales, phone, type, average stars, ratings, and photo', (done) => {
-    expect(db.agentSchema.obj.agent_name).toBeDefined();
-    expect(db.agentSchema.obj.recent_sales).toBeDefined();
-    expect(db.agentSchema.obj.phone).toBeDefined();
-    expect(db.agentSchema.obj.agent_type).toBeDefined();
-    expect(db.agentSchema.obj.average_stars).toBeDefined();
-    expect(db.agentSchema.obj.num_ratings).toBeDefined();
-    expect(db.agentSchema.obj.agent_photo).toBeDefined();
+    expect(mock.agentSchema.obj.agent_name).toBeDefined();
+    expect(mock.agentSchema.obj.recent_sales).toBeDefined();
+    expect(mock.agentSchema.obj.phone).toBeDefined();
+    expect(mock.agentSchema.obj.agent_type).toBeDefined();
+    expect(mock.agentSchema.obj.average_stars).toBeDefined();
+    expect(mock.agentSchema.obj.num_ratings).toBeDefined();
+    expect(mock.agentSchema.obj.agent_photo).toBeDefined();
     done();
   });
 
@@ -112,6 +97,12 @@ describe('Test the database and server', () => {
     expect(insertIntoDb).toBeTruthy() 
     done()
   });
+
+  test('It should insert data into the database', (done) => {
+    insertIntoDb()
+    done()
+  });
+
 });
 
 //TRASH PILE

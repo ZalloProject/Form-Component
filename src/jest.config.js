@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'server',
-  displayName: 'server',
+  name: 'server-database',
+  displayName: 'server-database',
   rootDir: './../',
   testMatch: [
     '<rootDir>/src/server.test.js'
