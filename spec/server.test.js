@@ -1,7 +1,7 @@
 const request = require('supertest');
-const app = require('./src/app');
+const app = require('../src/app');
 
-const db = require('./database/database');
+const db = require('../database/database');
 
 const mockingoose = require('mockingoose').default;
 const mongoose = require('mongoose');

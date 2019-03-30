@@ -29,6 +29,8 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.5.0",
     "mockingoose": "^2.12.0",
