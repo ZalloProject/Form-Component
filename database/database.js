@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const nameArr = require ('./nameArr')
 const random = require('mongoose-simple-random');
-// const helpers = require('./helpers')
 
 mongoose.connect('mongodb://localhost/form')
 
@@ -60,6 +59,7 @@ const generatePhoneNumber = () => {
   return phoneNum
 }
 
+//ASSIGNS AGENT TYPE//
 const agentAssign = (num) => {
   if(num < 25){
     return 'listing'
@@ -98,7 +98,7 @@ const getFourRandomAgents = async (cb) => {
     if(err){
       console.error(err)
     } else {
-      finalResultsArr.push(one[0]._doc)
+      finalResultsArr.push(one[0])
     }
   });
   await Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
@@ -106,7 +106,7 @@ const getFourRandomAgents = async (cb) => {
       console.error(err)
     } else {
       for(var i = 0; i < three.length; i++){
-        finalResultsArr.push(three[i]._doc)
+        finalResultsArr.push(three[i])
       }
     }
     cb(finalResultsArr)
@@ -117,11 +117,40 @@ const getFourRandomAgents = async (cb) => {
   }
 };
 
+// //////////RANDOM DATA RETRIEVAL FUNCTIONS/////////////////
+// const getFourRandomAgents = (cb) => {
+//   let finalResultsArr = []
+//   let filterOne = { agent_type: { $in: 'listing' } } 
+//   let filterThree = { agent_type: { $in: 'premier' } }
+//   let optionsThree = { limit: 3 } 
+
+//   Agent.findRandom(filterOne, {}, {}, (err, one) => {
+//     if(err){
+//       console.error(err)
+//     } else {
+//       console.log( "THIS IS THE QUERY OBJ", one)
+//       finalResultsArr.push(one[0])
+//       Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
+//         console.log("THREE", three)
+//         if(err){
+//           console.error(err)
+//         } else {
+//         for(var i = 0; i < three.length; i++){
+//           finalResultsArr.push(three[i])
+//         }
+//         console.log("STEP 1: ")
+//       }
+//       console.log("STEP 2: ")
+//         cb(finalResultsArr)
+//       })
+//     }
+//   });
+// }
 
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
 module.exports.agentSchema = agentSchema;
-module.exports.insertIntoDb = insertIntoDb;
+// module.exports.insertIntoDb = insertIntoDb;
 module.exports.randomNumberGen = randomNumberGen;
 module.exports.generatePhoneNumber = generatePhoneNumber;
 module.exports.agentAssign = agentAssign; 

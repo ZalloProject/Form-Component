@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const nameArr = require ('./nameArr')
 const random = require('mongoose-simple-random');
 
-mongoose.connect('mongodb://localhost/form_TEST')
+mongoose.connect('mongodb://localhost/formTEST')
 
-let agentSchema_TEST = mongoose.Schema({ 
+let agentSchemaTest = mongoose.Schema({ 
   agent_name_TEST: {
     type: String,
     unique: true,
@@ -16,9 +16,9 @@ let agentSchema_TEST = mongoose.Schema({
   num_ratings_TEST: Number,
   agent_photo_TEST: String
 });
-agentSchema_TEST.plugin(random)
+agentSchemaTest.plugin(random)
 
-let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
+let AgentTest = mongoose.model('AgentTest', agentSchemaTest)
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -71,13 +71,13 @@ const agentAssign = (num) => {
 function insertIntoDb(){
   let agentCount = 1
   for(let i = 0; i < nameArr.length && i <= 100; i++){
-    Agent.insertMany([
+    AgentTest.insertMany([
       {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
       agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
       agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
     ], (err, docs) => {
       if(err){
-        console.error("THERE IS AN ERROR-MOCK DATABASE") 
+        console.error(err) 
       } else {
         return docs 
       }
@@ -86,46 +86,40 @@ function insertIntoDb(){
 }
 
 //////////RANDOM DATA RETRIEVAL FUNCTIONS/////////////////
-const getFourRandomAgents = async (cb) => {
+const getFourRandomAgents = (cb) => {
   let finalResultsArr = []
   let filterOne = { agent_type: { $in: 'listing' } } 
   let filterThree = { agent_type: { $in: 'premier' } }
   let optionsThree = { limit: 3 } 
 
-  try {
-    await Agent.findRandom(filterOne, {}, {}, (err, one) => {
+  AgentTest.findRandom(filterOne, {}, {}, (err, one) => {
     if(err){
       console.error(err)
     } else {
       finalResultsArr.push(one[0]._doc)
+      AgentTest.findRandom(filterThree, {}, optionsThree, (err, three) => {
+        if(err){
+          console.error(err)
+        } else {
+        for(var i = 0; i < three.length; i++){
+          finalResultsArr.push(three[i]._doc)
+        }
+      }
+        cb(finalResultsArr)
+      })
     }
   });
-  await Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
-    if(err){
-      console.error(err)
-    } else {
-      for(var i = 0; i < three.length; i++){
-        finalResultsArr.push(three[i]._doc)
-      }
-    }
-    cb(finalResultsArr)
-  })
-  }
-  catch(e){
-    return e
-  }
-};
+}
 
-//CLEAR ALL MOCK DATA//
 const deleteAll = (cb) => {
-  Agent_TEST.deleteMany({}, () => {
+  AgentTest.deleteMany({}, () => {
     cb();
   });
 };
 
-module.exports.Agent = Agent; 
+module.exports.AgentTest = AgentTest; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
-module.exports.agentSchema = agentSchema;
+module.exports.agentSchemaTest = agentSchemaTest;
 module.exports.insertIntoDb = insertIntoDb;
 module.exports.randomNumberGen = randomNumberGen;
 module.exports.generatePhoneNumber = generatePhoneNumber;
