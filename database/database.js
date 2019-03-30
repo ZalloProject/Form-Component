@@ -68,12 +68,18 @@ const agentAssign = (num) => {
 //////////INSERTION///////////////// MUST BE RUN ON DB STARTUP TO AVERT ERRORS //////////////////
 function insertIntoDb(){
   let agentCount = 1
-  for(let i = agentCount; i < nameArr.length && i <= 100; i++){
+  for(let i = 0; i < nameArr.length && i <= 100; i++){
     Agent.insertMany([
       {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
       agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
       agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
-    ])
+    ], (err, docs) => {
+      if(err){
+        console.error("THERE IS AN ERROR") 
+      } else {
+        return docs 
+      }
+    })
   }
 }
 
@@ -106,9 +112,13 @@ const getFourRandomAgents = async (cb) => {
   catch(e){
     return e
   }
-}
+};
 
 
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
-// db.agents.createIndex( { "agent_name": 1 }, { unique: true } ) will only allow unique values of names in db
+module.exports.agentSchema = agentSchema;
+module.exports.insertIntoDb = insertIntoDb;
+module.exports.randomNumberGen = randomNumberGen;
+module.exports.generatePhoneNumber = generatePhoneNumber;
+module.exports.agentAssign = agentAssign; 

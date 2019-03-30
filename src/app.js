@@ -23,6 +23,7 @@ app.get('/agents', (req, res)=>{
   })
 })
 
+
 //another way of get requests using promises
 // app.get('/agents', (req, res)=>{
 //   Promise.try(()=>{

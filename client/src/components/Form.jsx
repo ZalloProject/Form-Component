@@ -77,7 +77,9 @@ class Form extends React.Component {
                     value={agent.average_stars}
                   /></span>
                   <span className="form-agent-ratings" id={"form-agent-ratings-"+idx}>({agent.num_ratings})</span>
-                  <span className="form-agent-sales" id={"form-agent-sales-"+idx}>{agent.recent_sales} <p className="form-agent-sales-p"> Recent Sales</p></span>
+                  <span className="form-agent-sales" id={"form-agent-sales-"+idx}>{agent.recent_sales} 
+                    <p className="form-agent-sales-p"> Recent Sales</p>
+                  </span>
                   <span className="form-agent-phone" id={"form-agent-phone-"+idx}>{agent.phone}</span>
                   <span className="form-agent-type" id={"form-agent-type-"+idx}>{agent.agent_type.toUpperCase()+" AGENT"}</span>
                 </div>
