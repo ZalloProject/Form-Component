@@ -109,10 +109,21 @@ describe('Test the database and server', () => {
   })
 
   test('It should have a function designed to insert data into the database', (done) => {
-    // const mockInsert = insertIntoDb
-    // const mockVal = mockInsert()
-    // expect(mockVal).toBeUndefined() //this will throw an error even though it is testing functionality
     expect(insertIntoDb).toBeTruthy() 
     done()
-  })
+  });
 });
+
+//TRASH PILE
+    //   return insertIntoDb()
+  //   .catch(err => {
+  //     expect(err.message).toBe('THERE IS AN ERROR')
+  //     done()
+  //   })
+  // })    
+  
+  // const mockInsert = insertIntoDb
+    // const mockVal = mockInsert()
+    // expect(mockVal).toBeUndefined() //this will throw an error even though it is testing functionality
+    // expect(insertIntoDb).toBeTruthy() 
+    // done()
