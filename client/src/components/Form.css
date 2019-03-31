@@ -9,7 +9,7 @@
 }
 
 .form-inner-container { 
-  display: fixed;
+  display: fixed; 
   max-width: 278px;
   max-height: 746px;
   padding: 10px;
