@@ -1,0 +1,387 @@
+.form-outer-container {
+  display: flex;
+  max-width: 290px;
+  border-top: 2px solid #006AFF;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  height: 750px;
+}
+
+.form-inner-container { 
+  display: fixed;
+  max-width: 278px;
+  max-height: 746px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-header-container {
+  font-weight: 700;
+  padding: 5px 0px;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 13px;
+}
+
+.form-inner-upper-container {
+  height: 370px;
+}
+
+.form-input-name{
+  background:url('https://i.ibb.co/8rr2Mz4/person.jpg');
+  background-repeat:no-repeat;
+  background-position:6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #A7A6AB;
+  padding-left: 25px;
+  width: 238px;
+  height: 25px;
+}
+
+.form-input-tel{
+  background:url('https://i.ibb.co/tJ7sxbM/phone.jpg');
+  background-repeat:no-repeat;
+  background-position:6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #A7A6AB;
+  padding-left: 25px;
+  width: 238px;
+  height: 25px;
+}
+
+.form-input-email{
+  background:url('https://i.ibb.co/3BHkgkc/email.jpg');
+  background-repeat:no-repeat;
+  background-position:6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #A7A6AB;
+  padding-left: 25px;
+  width: 238px;
+  height: 25px;
+}
+
+.form-input-interest{
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  text-align: start;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 4px;
+  border: 1px solid #A7A6AB;
+  width: 255px;
+  height: 40px;
+}
+
+.form-contact-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 265px;
+  height: 40px;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  background-color: #006AFF;
+  color: #fff;
+  border-radius: 5px;
+} 
+
+.form-contact-button:hover{
+  cursor: pointer;
+  background-color: #044db3;
+}
+
+/* INPUT COMPONENT EDITS */
+input[type=text]:focus{
+  box-shadow: 0 0 3pt 2pt #006AFF;
+}
+
+input[type=text]:hover{
+  cursor: auto;
+  border: 1px solid #006AFF;
+}
+
+input[type="checkbox"]:hover{
+  color: #006AFF;
+}
+
+.form-label-checkbox{
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  width: 228px;
+  height: 30px;
+  font-size: 12px;
+}
+
+.form-container-p {
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #54545A;
+}
+
+.form-terms{
+  color: #006AFF;
+}
+
+.form-terms:hover{
+  cursor: pointer;
+  color: #6198F1;
+}
+
+/* PARENT LEVEL COMPONENT */
+.form-inner-lower-container{
+  padding-top: 15px;
+  height: 335px;
+  border-top: 1px solid #54545A;
+  width: 270px;
+}
+
+/* CHILD LEVEL GRID COMPONENT - DIVIDED BY EACH COMPONENT */
+
+/* COMPONENT 0 */
+#form-agent-container-0 {
+  grid-column: 1 / 5;
+  grid-row: 1 / 6;
+  display: grid;
+  grid-template-columns: 10px 60px 160px 40px;
+  grid-template-rows: 15px 20px 15px 15px 10px
+}
+
+#form-agent-image-0 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#form-agent-name-0 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+#form-agent-stars-0 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-ratings-0 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-sales-0 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+#form-agent-phone-0 {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+}
+
+#form-agent-type-0 {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+/* COMPONENT 1 */
+#form-agent-container-1 {
+  grid-column: 1 / 5;
+  grid-row: 1 / 6;
+  display: grid;
+  grid-template-columns: 10px 60px 160px 40px;
+  grid-template-rows: 15px 20px 15px 15px 10px
+}
+
+#form-agent-image-1 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#form-agent-name-1 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+#form-agent-stars-1 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-ratings-1 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-sales-1 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+#form-agent-phone-1 {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+}
+
+#form-agent-type-1 {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+/* COMPONENT 2 */
+#form-agent-container-2 {
+  grid-column: 1 / 5;
+  grid-row: 1 / 6;
+  display: grid;
+  grid-template-columns: 10px 60px 160px 40px;
+  grid-template-rows: 15px 20px 15px 15px 10px
+}
+
+#form-agent-image-2 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#form-agent-name-2 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+#form-agent-stars-2 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-ratings-2 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-sales-2 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+#form-agent-phone-2 {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+}
+
+#form-agent-type-2 {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+/* COMPONENT 3 */
+#form-agent-container-3 {
+  grid-column: 1 / 5;
+  grid-row: 1 / 6;
+  display: grid;
+  grid-template-columns: 10px 60px 160px 40px;
+  grid-template-rows: 15px 20px 15px 15px 10px
+}
+
+#form-agent-image-3 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#form-agent-name-3 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+#form-agent-stars-3 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-ratings-3 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#form-agent-sales-3 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+#form-agent-phone-3 {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+}
+
+#form-agent-type-3 {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+/* GENERIC STYLING FOR CLASSES */
+.form-agent-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.form-agent-name {
+  white-space: nowrap;
+  color: #0e6fff;
+  width: 60px;
+  max-height: 15px;
+  align-content: left;
+  font-size: 14px;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+}
+
+.form-agent-sales {
+  white-space: nowrap;
+  text-align: center;
+  padding: 1px;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 12px;
+  text-emphasis: bold;
+  background-color: #1b5098;
+  border-radius: 2px;
+  color: white;
+  max-width: 20px;
+}
+
+.form-agent-sales-p {
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  display: inline;
+  white-space: nowrap;
+  margin-left: 7px;
+  font-size: 11px;
+  font-weight: 300;
+  text-emphasis: bold;
+  background-color: white;
+  border-radius: 2px;
+  color: black;
+}
+
+.form-agent-phone {
+  color: #0e6fff;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 11px;
+}
+
+.form-agent-type {
+  border: 1px solid #afafaf;
+  color: #afafaf;
+  width: 35px;
+  height: 20px;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 8px;
+  text-align: center;
+  padding: 2px;
+}
+
+.form-agent-ratings {
+  text-align: center;
+  color: #0e6fff;
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 13px;
+}
+
+.form-agent-stars {
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 13px;
+}
