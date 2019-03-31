@@ -58,6 +58,7 @@ describe('Form', () => {
     const spy = jest.spyOn(Form.prototype, 'componentWillMount');
     const page = mount( <Form/> );
     expect(spy).toHaveBeenCalled();
+    expect(page.state.length).not.toBe(0)
     spy.mockReset();
     spy.mockRestore();
   });
@@ -70,6 +71,8 @@ describe('Form', () => {
 
   test('should have an array with data in it', () => {
     expect(sampleData.length).toBe(4)
+    expect(typeof sampleData[0].recent_sales).toBe('number')
+    expect(Array.isArray(sampleData)).toBe(true)
   })
 
   test('a button should exist', () => {
@@ -87,8 +90,13 @@ describe('Form', () => {
     expect(input.length).toBe(1);
   });
 
-  test('it should render images of agents', () => {
-    expect(pageRendered.find(".form-agent-name").length).toBe(1)
+  test('it should render the type of agent', () => {
+    const wrapper = mount(<div className="form-agent-type"/>);
+    expect(wrapper.find(".form-agent-type").exists()).toBe(true)
   });
+
+  // test('it should find elements after they are loaded', () => {
+  //   expect(pageMounted.find(".form-agent-container").exists()).toBe(true)
+  // });
 
 });

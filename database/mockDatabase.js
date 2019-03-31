@@ -50,6 +50,7 @@ function insertIntoDb(){
       if(err){
         console.error(err) 
       } else {
+        console.log(docs)
         return docs 
       }
     })
