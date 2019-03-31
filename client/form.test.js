@@ -1,17 +1,13 @@
 import React from 'react';
-import {
-  shallow,
-  mount,
-  render
-} from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import Form from './src/components/Form'
 // import App from './src/index'
 
 //sample test
 describe('Form', () => {
-  const page = < Form / > ;
-  const pageMounted = mount(page);
-  
+  const pageMounted = mount(<Form />);
+  const pageRendered = render(<Form />);
+
   const sampleData = [{
       _id: '5c9fe75de932d6cdda1cc370',
       agent_name: 'Ella-Rose Robles',
@@ -60,17 +56,21 @@ describe('Form', () => {
 
   test('should call componentWillMount', () => {
     const spy = jest.spyOn(Form.prototype, 'componentWillMount');
-    const page = mount( < Form / > );
+    const page = mount( <Form/> );
     expect(spy).toHaveBeenCalled();
     spy.mockReset();
     spy.mockRestore();
   });
 
-  it('renders something in the form component', () => {
-    const wrapper = mount( < div className = "form-outer-container" / > );
+  test('renders something in the form component', () => {
+    const wrapper = mount(<div className="form-outer-container"/>);
     expect(wrapper.exists(".form-outer-container")).toBe(true);
     expect(wrapper.find(".form-outerrr-container").exists()).toBe(false);
   });
+
+  test('should have an array with data in it', () => {
+    expect(sampleData.length).toBe(4)
+  })
 
   test('a button should exist', () => {
     const button = pageMounted.find('.form-contact-button');
@@ -82,17 +82,13 @@ describe('Form', () => {
     expect(input.length).toBe(4);
   });
 
-  // test('it should render images of agents', () => {
-  //   const image = pageMounted.find(".form-agent-name")
-  //   expect(image.length).toBe(1)
-  // });
+  test('it should have a checkbox', () => {
+    const input = pageMounted.find('input[type="checkbox"]')
+    expect(input.length).toBe(1);
+  });
 
-
-  // test('it should render images of agents', () => {
-  //   const page = <Form />;
-  //   const pageMounted = mount(page);
-  //   const image = pageMounted.find(".form-agent-name")
-  //   expect(image.length).toBe(1)
-  // });
+  test('it should render images of agents', () => {
+    expect(pageRendered.find(".form-agent-name").length).toBe(1)
+  });
 
 });
