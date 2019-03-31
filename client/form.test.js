@@ -94,9 +94,4 @@ describe('Form', () => {
     const wrapper = mount(<div className="form-agent-type"/>);
     expect(wrapper.find(".form-agent-type").exists()).toBe(true)
   });
-
-  // test('it should find elements after they are loaded', () => {
-  //   expect(pageMounted.find(".form-agent-container").exists()).toBe(true)
-  // });
-
 });

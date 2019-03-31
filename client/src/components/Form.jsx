@@ -81,52 +81,52 @@ class Form extends React.Component {
                 Terms of Use.
               </span> 
               Zallo does not endorse any real estate professionals.
-              </p>
-            </div>
-            <div className="form-inner-lower-container"> {/** Agents will be loaded below this line */}
-              {this.state.agents.map((agent, idx) => {
-              return (
-                <div key={agent._id} 
-                className="form-agent-container" 
-                id={"form-agent-container-"+idx}>
-                  <span>
-                    <img src={agent.agent_photo} 
-                    className="form-agent-image" 
-                    id={"form-agent-image-"+idx}/>
-                  </span>
-                  <span className="form-agent-name" 
-                    id={"form-agent-name-"+idx}>
-                    {agent.agent_name}
-                  </span> 
-                  <span id={"form-agent-stars-"+idx}>
-                    <StarRatingComponent 
-                      className="form-agent-stars" 
-                      name="rate1" 
-                      starCount={5}
-                      starColor={"#3dca59"}
-                      emptyStarColor={"white"}
-                      value={agent.average_stars}/>
-                  </span>
-                  <span className="form-agent-ratings" 
-                    id={"form-agent-ratings-"+idx}>
-                    ({agent.num_ratings})
-                  </span>
-                  <span className="form-agent-sales" 
-                    id={"form-agent-sales-"+idx}>
-                    {agent.recent_sales} 
-                    <p className="form-agent-sales-p"> 
-                      Recent Sales
-                    </p>
-                  </span>
-                  <span className="form-agent-phone" 
-                    id={"form-agent-phone-"+idx}>
-                    {agent.phone}
-                  </span>
-                  <span className="form-agent-type" 
-                    id={"form-agent-type-"+idx}>
-                    {agent.agent_type.toUpperCase()+" AGENT"}
-                  </span>
-                </div>
+            </p>
+          </div>
+          <div className="form-inner-lower-container"> {/** Agents will be loaded below this line */}
+            {this.state.agents.map((agent, idx) => {
+            return (
+              <div key={agent._id} 
+              className="form-agent-container" 
+              id={"form-agent-container-"+idx}>
+                <span>
+                  <img src={agent.agent_photo} 
+                  className="form-agent-image" 
+                  id={"form-agent-image-"+idx}/>
+                </span>
+                <span className="form-agent-name" 
+                  id={"form-agent-name-"+idx}>
+                  {agent.agent_name}
+                </span> 
+                <span id={"form-agent-stars-"+idx}>
+                  <StarRatingComponent 
+                    className="form-agent-stars" 
+                    name="rate1" 
+                    starCount={5}
+                    starColor={"#3dca59"}
+                    emptyStarColor={"white"}
+                    value={agent.average_stars}/>
+                </span>
+                <span className="form-agent-ratings" 
+                  id={"form-agent-ratings-"+idx}>
+                  ({agent.num_ratings})
+                </span>
+                <span className="form-agent-sales" 
+                  id={"form-agent-sales-"+idx}>
+                  {agent.recent_sales} 
+                  <p className="form-agent-sales-p"> 
+                    Recent Sales
+                  </p>
+                </span>
+                <span className="form-agent-phone" 
+                  id={"form-agent-phone-"+idx}>
+                  {agent.phone}
+                </span>
+                <span className="form-agent-type" 
+                  id={"form-agent-type-"+idx}>
+                  {agent.agent_type.toUpperCase()+" AGENT"}
+                </span>
+              </div>
               ) 
             })}
           </div>
