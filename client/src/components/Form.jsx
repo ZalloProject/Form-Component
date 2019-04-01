@@ -14,7 +14,6 @@ class Form extends React.Component {
     $.get('/agents')
     .then((agentData)=>{
       let parsedAgentData = JSON.parse(agentData)
-      console.log(agentData)
       this.setState({
         agents: parsedAgentData 
       })
@@ -78,7 +77,7 @@ class Form extends React.Component {
               prerecorded/artificial voices. You don't need to consent as a condition of buying any 
               property, goods or services. Message/data rates may apply. You also agree to our<br/> 
               <span className="form-terms"> 
-                Terms of Use.
+                Terms of Use. 
               </span> 
               Zallo does not endorse any real estate professionals.
             </p>
@@ -129,6 +128,9 @@ class Form extends React.Component {
               </div>
               ) 
             })}
+            <p className="form-inner-lower-container-p">
+              Learn how to appear as the agent above
+            </p>
           </div>
         </div>
       </div>
