@@ -1,6 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
 import StarRatingComponent from 'react-star-rating-component';
+import style from './Form.css'
 
 class Form extends React.Component {
   constructor() {
@@ -19,13 +20,6 @@ class Form extends React.Component {
       })
     })
   }
-
-  // addressFunc(){
-  //   retStr="I am interested in "
-  //   retStr+= '1225 Moreland St. \n'
-  //   retStr+= 'Kalamazoo, MI, 49008'
-  //   return retStr
-  // }
 
   render() { 
     return(<div className="form-outer-container">
