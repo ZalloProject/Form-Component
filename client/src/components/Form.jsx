@@ -20,6 +20,13 @@ class Form extends React.Component {
     })
   }
 
+  // addressFunc(){
+  //   retStr="I am interested in "
+  //   retStr+= '1225 Moreland St. \n'
+  //   retStr+= 'Kalamazoo, MI, 49008'
+  //   return retStr
+  // }
+
   render() { 
     return(<div className="form-outer-container">
       <div className="form-inner-container">
@@ -55,7 +62,7 @@ class Form extends React.Component {
             <label>
               <input type="text" 
               name="interested-in" 
-              placeholder="I am interested in 1225 E Moreland St." 
+              placeholder='I am interested in 1225 E. Moreland St.'
               className="form-input-interest"
               />
             </label>
@@ -75,7 +82,7 @@ class Form extends React.Component {
             <p>By pressing Contact Agent, you agree that Zallo Group and real estate professionals 
               may call/text you about your inquiry, which may involve use of automated means and 
               prerecorded/artificial voices. You don't need to consent as a condition of buying any 
-              property, goods or services. Message/data rates may apply. You also agree to our<br/> 
+              property, goods or services. Message/data rates may apply. You also agree to our <br/> 
               <span className="form-terms"> 
                 Terms of Use. 
               </span> 
