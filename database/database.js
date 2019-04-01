@@ -2,7 +2,14 @@ const mongoose = require('mongoose')
 const nameArr = require ('./nameArr')
 const random = require('mongoose-simple-random');
 
-mongoose.connect('mongodb://localhost/form')
+// mongoose.connect('mongodb://localhost/form')
+mongoose.connect('mongodb+srv://JenNummerdor:Coffee@cluster0-h7uqd.mongodb.net/test?retryWrites=true')
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Connected to Mongo!')
+});
 
 let agentSchema = mongoose.Schema({ 
   agent_name: {
@@ -16,15 +23,10 @@ let agentSchema = mongoose.Schema({
   num_ratings: Number,
   agent_photo: String
 });
+
 agentSchema.plugin(random)
 
 let Agent = mongoose.model('Agent', agentSchema)
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('Connected to Mongo!')
-});
 
 //////////FUNCTIONS TO RANDOMLY GENERATE DATA FOR THE DATABASE/////////////////
 

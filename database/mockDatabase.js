@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const mockData = require ('./mockData');
 const random = require('mongoose-simple-random');
 
-mongoose.connect('mongodb://localhost/formTEST')
+// mongoose.connect('mongodb://localhost/formTEST')
+mongoose.connect('mongodb+srv://JenNummerdor:Coffee@cluster0-h7uqd.mongodb.net/test?retryWrites=true')
 
 let agentSchemaTest = mongoose.Schema({ 
   agent_name_TEST: {
@@ -19,12 +20,6 @@ let agentSchemaTest = mongoose.Schema({
 agentSchemaTest.plugin(random);
 
 let AgentTest = mongoose.model('AgentTest', agentSchemaTest);
-
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//   console.log('Connected to Mongo TEST DATABASE!');
-// });
 
 //////////INSERTION INTO DATABASE MOCK FUNCTION/////////////////
 const insertIntoDbTest = (cb) => {
