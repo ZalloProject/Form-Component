@@ -75,9 +75,15 @@ function insertIntoDb(){
   let agentCount = 1
   for(let i = 0; i < nameArr.length && i <= 100; i++){
     Agent.insertMany([
-      {agent_name: nameArr[i], recent_sales: randomNumberGen(100), phone: generatePhoneNumber(), 
-      agent_type: agentAssign(agentCount), average_stars: randomNumberGen(5, "stars"), num_ratings: randomNumberGen(500, agentCount), 
-      agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`}
+      {
+        agent_name: nameArr[i], 
+        recent_sales: randomNumberGen(100), 
+        phone: generatePhoneNumber(), 
+        agent_type: agentAssign(agentCount), 
+        average_stars: randomNumberGen(5, "stars"), 
+        num_ratings: randomNumberGen(500, agentCount), 
+        agent_photo: `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${agentCount++}.jpg`
+      }
     ], (err, docs) => {
       if(err){
         console.error("THERE IS AN ERROR") 
