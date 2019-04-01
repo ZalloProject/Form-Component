@@ -23,6 +23,7 @@ let agentSchema = mongoose.Schema({
   num_ratings: Number,
   agent_photo: String
 });
+
 agentSchema.plugin(random)
 
 let Agent = mongoose.model('Agent', agentSchema)
