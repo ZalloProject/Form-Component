@@ -1,48 +1,38 @@
 const request = require('supertest');
 const app = require('../src/app');
-
-const db = require('../database/database');
-
 const mockingoose = require('mockingoose').default;
 const mongoose = require('mongoose');
 
+const db = require('../database/database');
+const mock = require('../database/mockDatabase')
+
+//not modifying database
 const model = db.Agent;
 const getFourRandomAgents = db.getFourRandomAgents;
 const randomNumberGen = db.randomNumberGen;
 const generatePhoneNumber = db.generatePhoneNumber;
 const agentAssign = db.agentAssign;
-const insertIntoDb = db.insertIntoDb;
 
-// mongoose.connect('mongodb://localhost/form_TEST')
-
-// let agentSchema_TEST = mongoose.Schema({ 
-//   agent_name_TEST: {
-//     type: String,
-//     unique: true,
-//   },
-//   recent_sales_TEST: Number, 
-//   phone_TEST: String,
-//   agent_type_TEST: String,
-//   average_stars_TEST: Number,
-//   num_ratings_TEST: Number,
-//   agent_photo_TEST: String
-// });
-
-// let Agent_TEST = mongoose.model('Agent_TEST', agentSchema_TEST)
+//touching mock database
+const insertIntoDb = mock.insertIntoDbTest;
+const AgentTest = mock.AgentTest;
+// const getFourRandomAgents = mock.getFourRandomAgentsTest;//uncomment for better practices, worse coverage
 
 beforeEach(() => {
   mockingoose.resetAll();
 });
 
- //test example
-describe('Test the database and server', () => {
+describe('Test the server', () => {
   test('It should respond to a get request', (done) => {
     return request(app).get("/").then(response => {
+      expect(typeof response).toBe('object')
       expect(response.statusCode).toBe(200);
       done();
     });
   });
+});
 
+describe('Test the database,', () => {
   test('Database file should have a function called Get Four Random Agents', (done) => {
     expect(getFourRandomAgents).toBeTruthy();
     done()
@@ -52,10 +42,10 @@ describe('Test the database and server', () => {
     expect(model).toBeTruthy();
   });
 
-  test('Get Four Random Agents Should Return Four Random Agents', async () => {
-    await (getFourRandomAgents(data => {
-      console.log(data);
+  test('Get Four Random Agents Should Return Four Random Agents', () => {
+    return (getFourRandomAgents(data => {
       expect(data).toHaveLength(4);
+      expect(data[0]).toHaveProperty('agent_name')
     }));
   });
 
@@ -70,7 +60,7 @@ describe('Test the database and server', () => {
     done();
   });
 
-  test('It should pass a sample db test', (done)=> { //THIS WILL NOT WORK UPON RELOAD OF DATA
+  test('It should pass a sample db test', (done) => { 
     const _doc = {
       _id: "5c9e7afc717b77527eb9fc0d",
       "recent_sales" : 8,
@@ -90,40 +80,34 @@ describe('Test the database and server', () => {
   });
 
   test('It should have a random number generator that generates within a range of numbers', (done) => {
-    const value = randomNumberGen(5, 'stars')
-    expect(value).toBeGreaterThanOrEqual(1)
-    expect(value).toBeLessThan(6)
-    done()
-  })
+    const value = randomNumberGen(5, 'stars');
+    expect(value).toBeGreaterThanOrEqual(1);
+    expect(value).toBeLessThan(6);
+    done();
+  });
 
   test('It should have a random phone number generator', (done) => {
-    const value = generatePhoneNumber()
-    expect(value).toHaveLength(14)
-    done()
-  })
+    const value = generatePhoneNumber();
+    expect(value).toHaveLength(14);
+    done();
+  });
 
   test('It should have an agent assigner function', (done) => {
-    const value = agentAssign()
-    expect(value).not.toBe(null)
-    done()
-  })
+    const value = agentAssign();
+    expect(value).not.toBe(null);
+    done();
+  });
 
   test('It should have a function designed to insert data into the database', (done) => {
-    expect(insertIntoDb).toBeTruthy() 
-    done()
+    expect(insertIntoDb).toBeTruthy() ;
+    done();
+  });
+
+  test('It should insert sample data into a mock database', async (done) => {
+    insertIntoDb((data) => {
+      expect(data).toHaveLength(5)
+      expect(data[0]).toHaveProperty('agent_name_TEST')
+    });
+    done();
   });
 });
-
-//TRASH PILE
-    //   return insertIntoDb()
-  //   .catch(err => {
-  //     expect(err.message).toBe('THERE IS AN ERROR')
-  //     done()
-  //   })
-  // })    
-  
-  // const mockInsert = insertIntoDb
-    // const mockVal = mockInsert()
-    // expect(mockVal).toBeUndefined() //this will throw an error even though it is testing functionality
-    // expect(insertIntoDb).toBeTruthy() 
-    // done()

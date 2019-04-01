@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const nameArr = require ('./nameArr')
 const random = require('mongoose-simple-random');
-// const helpers = require('./helpers')
 
 mongoose.connect('mongodb://localhost/form')
 
@@ -19,7 +18,6 @@ let agentSchema = mongoose.Schema({
 });
 agentSchema.plugin(random)
 
-//////////FUNCTIONS TO RANDOMLY GENERATE DATA FOR THE DATABASE/////////////////
 let Agent = mongoose.model('Agent', agentSchema)
 
 var db = mongoose.connection;
@@ -28,6 +26,9 @@ db.once('open', function() {
   console.log('Connected to Mongo!')
 });
 
+//////////FUNCTIONS TO RANDOMLY GENERATE DATA FOR THE DATABASE/////////////////
+
+//GENERATES RANDOM NUMBER
 const randomNumberGen = (max, options) => {
   if(options === 'stars'){
     var min = Math.ceil(2);
@@ -41,6 +42,7 @@ const randomNumberGen = (max, options) => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
+//GENERATES RANDOM PHONE NUMBER
 const generatePhoneNumber = () => {
   let phoneNum = "("
   for (var i = 0; i < 3; i++){ 
@@ -57,6 +59,7 @@ const generatePhoneNumber = () => {
   return phoneNum
 }
 
+//ASSIGNS AGENT TYPE//
 const agentAssign = (num) => {
   if(num < 25){
     return 'listing'
@@ -95,7 +98,7 @@ const getFourRandomAgents = async (cb) => {
     if(err){
       console.error(err)
     } else {
-      finalResultsArr.push(one[0]._doc)
+      finalResultsArr.push(one[0])
     }
   });
   await Agent.findRandom(filterThree, {}, optionsThree, (err, three) => {
@@ -103,7 +106,7 @@ const getFourRandomAgents = async (cb) => {
       console.error(err)
     } else {
       for(var i = 0; i < three.length; i++){
-        finalResultsArr.push(three[i]._doc)
+        finalResultsArr.push(three[i])
       }
     }
     cb(finalResultsArr)
@@ -114,11 +117,9 @@ const getFourRandomAgents = async (cb) => {
   }
 };
 
-
 module.exports.Agent = Agent; 
 module.exports.getFourRandomAgents = getFourRandomAgents; 
 module.exports.agentSchema = agentSchema;
-module.exports.insertIntoDb = insertIntoDb;
 module.exports.randomNumberGen = randomNumberGen;
 module.exports.generatePhoneNumber = generatePhoneNumber;
 module.exports.agentAssign = agentAssign; 

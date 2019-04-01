@@ -1,4 +1,4 @@
-  let nameArr = [
+  const nameArr = [
   'Isaac Lee',
   'Troy Amelotte',
   'James Kelly',
