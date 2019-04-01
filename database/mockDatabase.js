@@ -34,6 +34,7 @@ const insertIntoDbTest = (cb) => {
   };
 };
 
+
 //lowers code coverage but does not query db directly(queries mock)
 // //////////RETRIEVAL FROM DATABASE MOCK FUNCTION/////////////////
 // const getFourRandomAgentsTest = async (cb) => {
