@@ -26,7 +26,7 @@ describe('Test the server', () => {
   test('It should respond to a get request', (done) => {
     return request(app).get("/agents").then(response => {
       expect(typeof response).toBe('object')
-      expect(response.statusCode).toBe(200);
+      expect(response.statusCode).toBe(200); 
       done();
     });
   });
