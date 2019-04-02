@@ -63,6 +63,19 @@ describe('Form', () => {
     spy.mockRestore();
   });
 
+    test('should call setState and should render components', () => {
+      const page = shallow( <Form/> );
+      page.setState({
+        agents: sampleData
+      })
+      expect(page.find(".form-agent-container").length).toBe(4);
+      expect(page.find(".form-agent-image").length).toBe(4);
+      expect(page.find(".form-agent-name").length).toBe(4);
+      expect(page.find(".form-agent-sales").length).toBe(4);
+      expect(page.find(".form-agent-ratings").length).toBe(4);
+      expect(page.find(".form-agent-phone").length).toBe(4);
+  });
+
   test('renders something in the form component', () => {
     const wrapper = mount(<div className="form-outer-container"/>);
     expect(wrapper.exists(".form-outer-container")).toBe(true);
