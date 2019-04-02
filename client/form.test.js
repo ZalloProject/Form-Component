@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Form from './src/components/Form'
-// import App from './src/index'
 
 //sample test
 describe('Form', () => {
