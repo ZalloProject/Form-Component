@@ -5,7 +5,7 @@
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   border-left: 1px solid #ccc;
-  height: 750px;
+  height: 745px;
 }
 
 .form-inner-container { 
@@ -27,7 +27,7 @@
   height: 370px;
 }
 
-.form-input-name{
+.form-input-name {
   background:url('https://i.ibb.co/8rr2Mz4/person.jpg');
   background-repeat:no-repeat;
   background-position:6px;
@@ -39,7 +39,7 @@
   height: 25px;
 }
 
-.form-input-tel{
+.form-input-tel {
   background:url('https://i.ibb.co/tJ7sxbM/phone.jpg');
   background-repeat:no-repeat;
   background-position:6px;
@@ -51,7 +51,7 @@
   height: 25px;
 }
 
-.form-input-email{
+.form-input-email {
   background:url('https://i.ibb.co/3BHkgkc/email.jpg');
   background-repeat:no-repeat;
   background-position:6px;
@@ -63,15 +63,15 @@
   height: 25px;
 }
 
-.form-input-interest{
+.form-input-interest {
   font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
-  text-align: start;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 4px;
+  padding: 6px;
   border: 1px solid #A7A6AB;
-  width: 255px;
-  height: 40px;
+  width: 252px;
+  padding-bottom: 25px;
+  word-wrap: break-word;
 }
 
 .form-contact-button {
@@ -86,26 +86,12 @@
   border-radius: 5px;
 } 
 
-.form-contact-button:hover{
+.form-contact-button:hover {
   cursor: pointer;
   background-color: #044db3;
 }
 
-/* INPUT COMPONENT EDITS */
-input[type=text]:focus{
-  box-shadow: 0 0 3pt 2pt #006AFF;
-}
-
-input[type=text]:hover{
-  cursor: auto;
-  border: 1px solid #006AFF;
-}
-
-input[type="checkbox"]:hover{
-  color: #006AFF;
-}
-
-.form-label-checkbox{
+.form-label-checkbox {
   font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
   width: 228px;
   height: 30px;
@@ -119,13 +105,27 @@ input[type="checkbox"]:hover{
   color: #54545A;
 }
 
-.form-terms{
+.form-terms {
   color: #006AFF;
 }
 
-.form-terms:hover{
+.form-terms:hover {
   cursor: pointer;
   color: #6198F1;
+}
+
+/* INPUT COMPONENT EDITS */
+input[type=text]:focus {
+  box-shadow: 0 0 3pt 2pt #006AFF;
+}
+
+input[type=text]:hover {
+  cursor: auto;
+  border: 1px solid #006AFF;
+}
+
+input[type="checkbox"]:hover {
+  color: #006AFF;
 }
 
 /* PARENT LEVEL COMPONENT */
@@ -134,6 +134,18 @@ input[type="checkbox"]:hover{
   height: 335px;
   border-top: 1px solid #54545A;
   width: 270px;
+}
+/* BOTTOM TEXT */
+.form-inner-lower-container-p{
+  font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
+  font-size: 12.5px;
+  color: #006AFF;
+  margin-top: -1px;
+}
+
+.form-inner-lower-container-p:hover{
+  cursor: pointer;
+  color: #6198F1;
 }
 
 /* CHILD LEVEL GRID COMPONENT - DIVIDED BY EACH COMPONENT */
@@ -338,15 +350,17 @@ input[type="checkbox"]:hover{
 
 .form-agent-sales {
   white-space: nowrap;
+  font-weight: bold;
+  display: inline-block;
   text-align: center;
   padding: 1px;
   font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
-  font-size: 12px;
-  text-emphasis: bold;
+  font-size: 10.5px;
   background-color: #1b5098;
   border-radius: 2px;
   color: white;
-  width: 15px;
+  max-width: 18px;
+  text-indent: 2px;
 }
 
 .form-agent-sales-p {
@@ -356,14 +370,12 @@ input[type="checkbox"]:hover{
   margin-left: 9px;
   font-size: 11px;
   font-weight: 300;
-  text-emphasis: bold;
   background-color: white;
   border-radius: 2px;
   color: black;
 }
 
 .form-agent-phone {
-  color: #0e6fff;
   font-family: "Open Sans", Gotham, gotham, Tahoma, Geneva, sans-serif;
   font-size: 11px;
 }

@@ -1,6 +1,4 @@
 var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client/src');
-var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
   entry: path.join(__dirname, '/client/src/index.jsx'),
@@ -16,6 +14,10 @@ module.exports = {
           },  
         },
       },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
+    }
     ],
   },
   output: {
