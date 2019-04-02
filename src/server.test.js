@@ -99,7 +99,7 @@ describe('Test the database,', () => {
   });
 
   test('It should have a function designed to insert data into the database', (done) => {
-    expect(insertIntoDb).toBeTruthy() ;
+    expect(insertIntoDb).toBeTruthy();
     done();
   });
 
