@@ -12,7 +12,7 @@ class Form extends React.Component {
   }
 
   componentWillMount() { 
-    $.get('/agents')
+    $.get('http://localhost:3001/agents')
     .then((agentData)=>{
       let parsedAgentData = JSON.parse(agentData)
       this.setState({
