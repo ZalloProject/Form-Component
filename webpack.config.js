@@ -1,7 +1,11 @@
 var path = require('path');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
   entry: path.join(__dirname, '/client/src/index.jsx'),
+  plugins: [
+    new MinifyPlugin(minifyOpts, pluginOpts)
+  ],
   module: {
     rules: [
       {
