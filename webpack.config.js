@@ -1,13 +1,9 @@
 var path = require('path');
-var CompressionPlugin = require("compression-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: path.join(__dirname, '/client/src/index.jsx'),
   mode: 'production',
   optimization: {
-    // minimizer: [new UglifyJsPlugin()],
     namedModules: false,
     namedChunks: false,
     nodeEnv: 'production',
@@ -26,16 +22,6 @@ module.exports = {
     checkWasmTypes: true,
     minimize: true,
   },
-  plugins: [
-    new BundleAnalyzerPlugin(),
-    // new CompressionPlugin({
-    //   filename: "[path].gz[query]",
-    //   algorithm: "gzip",
-    //   test: /\.js$|\.css$|\.html$/,
-    //   threshold: 10240,
-    //   minRatio: 0
-    // })
-  ],
   module: {
     rules: [
       {
