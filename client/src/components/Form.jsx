@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import StarRatingComponent from 'react-star-rating-component';
 import style from './Form.css'
 import fetch from 'node-fetch'
