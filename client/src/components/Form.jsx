@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import StarRatingComponent from 'react-star-rating-component';
 import style from './Form.css'
+import fetch from 'node-fetch'
 
 class Form extends React.Component {
   constructor() {
@@ -12,13 +13,18 @@ class Form extends React.Component {
   }
 
   componentWillMount() { 
-    $.get('http://localhost:3001/agents')
-    .then((agentData)=>{
-      let parsedAgentData = JSON.parse(agentData)
+    fetch('http://localhost:3001/agents', {
+    method: 'GET',
+    headers: {
+      "Content-Type": 'text/plain'
+      }
+    }).then((res) => {
+      return res.json()
+    }).then((agentData) => {
       this.setState({
-        agents: parsedAgentData 
+        agents: agentData
       })
-    })
+    });
   }
 
   render() { 

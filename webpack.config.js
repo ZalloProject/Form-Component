@@ -1,10 +1,40 @@
 var path = require('path');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
+var CompressionPlugin = require("compression-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: path.join(__dirname, '/client/src/index.jsx'),
+  mode: 'production',
+  optimization: {
+    // minimizer: [new UglifyJsPlugin()],
+    namedModules: false,
+    namedChunks: false,
+    nodeEnv: 'production',
+    flagIncludedChunks: true,
+    occurrenceOrder: true,
+    sideEffects: true,
+    usedExports: true,
+    concatenateModules: true,
+    splitChunks: {
+      hidePathInfo: true,
+      minSize: 30000,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+    },
+    noEmitOnErrors: true,
+    checkWasmTypes: true,
+    minimize: true,
+  },
   plugins: [
-    new MinifyPlugin(minifyOpts, pluginOpts)
+    new BundleAnalyzerPlugin(),
+    // new CompressionPlugin({
+    //   filename: "[path].gz[query]",
+    //   algorithm: "gzip",
+    //   test: /\.js$|\.css$|\.html$/,
+    //   threshold: 10240,
+    //   minRatio: 0
+    // })
   ],
   module: {
     rules: [
