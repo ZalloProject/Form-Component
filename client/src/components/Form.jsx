@@ -12,11 +12,8 @@ class Form extends React.Component {
   }
 
   componentWillMount() { 
-    fetch('http://localhost:3001/agents', {
-    method: 'GET',
-    headers: {
-      "Content-Type": 'text/plain'
-      }
+    fetch('http://zallo-agents-server.us-west-2.elasticbeanstalk.com/agents', {
+      method: "GET",
     }).then((res) => {
       return res.json()
     }).then((agentData) => {
