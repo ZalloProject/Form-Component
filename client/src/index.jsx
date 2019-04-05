@@ -27,9 +27,9 @@ class App extends React.Component {
 
   render(){
     return(
-      <div className={style['form-outer-container']}>
-        <div className={style['form-inner-container']}>
-        <header className={style['form-header-container']}>
+      <div className={style.formOuterContainer}>
+        <div className={style.formInnerContainer}>
+        <header className={style.formHeaderContainer}>
           CONTACT AGENT
         </header>
           <UpperForm />
