@@ -12,6 +12,7 @@ class Form extends React.Component {
   }
 
   componentWillMount() { 
+    // fetch('http://localhost:8081/agents', {
     fetch('http://zallo-agents-server.us-west-2.elasticbeanstalk.com/agents', {
       method: "GET",
     }).then((res) => {
@@ -20,6 +21,8 @@ class Form extends React.Component {
       this.setState({
         agents: agentData
       })
+    }).catch(e => {
+      console.log(e)
     });
   }
 
