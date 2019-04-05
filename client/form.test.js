@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import Form from './src/components/Form'
+import UpperForm from './src/components/UpperForm'
+import LowerForm from './src/components/LowerForm'
+import Index from './src/components/Index'
 
-//sample test
-describe('Form', () => {
-  const pageMounted = mount(<Form />);
-  const pageRendered = render(<Form />);
+describe('Upper Form and Lower Form Components', () => {
+  const upperFormMounted = mount(<UpperForm />);
 
   const sampleData = [{
       _id: '5c9fe75de932d6cdda1cc370',
@@ -54,30 +54,35 @@ describe('Form', () => {
   ]
 
   test('should call componentWillMount', () => {
-    const spy = jest.spyOn(Form.prototype, 'componentWillMount');
-    const page = mount( <Form/> );
+    const spy = jest.spyOn(Index.prototype, 'componentWillMount');
+    const page = mount( <Index /> );
     expect(spy).toHaveBeenCalled();
     expect(page.state.length).not.toBe(0)
     spy.mockReset();
     spy.mockRestore();
   });
 
-    test('should call setState and should render components', () => {
-      const page = shallow( <Form/> );
-      page.setState({
-        agents: sampleData
-      })
-      expect(page.find(".form-agent-container").length).toBe(4);
-      expect(page.find(".form-agent-image").length).toBe(4);
-      expect(page.find(".form-agent-name").length).toBe(4);
-      expect(page.find(".form-agent-sales").length).toBe(4);
-      expect(page.find(".form-agent-ratings").length).toBe(4);
-      expect(page.find(".form-agent-phone").length).toBe(4);
+  test('should call setState and should render components', () => {
+    const page = shallow( <Index /> );
+    page.setState({
+      agents: sampleData
+    })
+    expect(page.state.length).toBe(1);
   });
 
-  test('renders something in the form component', () => {
-    const wrapper = mount(<div className="form-outer-container"/>);
-    expect(wrapper.exists(".form-outer-container")).toBe(true);
+  test('should correctly render the upper form component', () => {
+    const page = render( <UpperForm/> );
+    expect(page).toMatchSnapshot();
+  })
+
+  test('should correctly render the lower form component', () => {
+    const page = render( <LowerForm/> );
+    expect(page).toMatchSnapshot();
+  })
+
+  test('renders something in the index component', () => {
+    const wrapper = mount(<div className="formOuterContainer"/>);
+    expect(wrapper.exists(".formOuterContainer")).toBe(true);
     expect(wrapper.find(".form-outerrr-container").exists()).toBe(false);
   });
 
@@ -88,22 +93,22 @@ describe('Form', () => {
   })
 
   test('a button should exist', () => {
-    const button = pageMounted.find('.form-contact-button');
+    const button = upperFormMounted.find('.formContactButton');
     expect(button.length).toBe(1);
   });
 
   test('it should have 4 places on input form for text', () => {
-    const input = pageMounted.find('input[type="text"]')
+    const input = upperFormMounted.find('input[type="text"]')
     expect(input.length).toBe(4);
   });
 
   test('it should have a checkbox', () => {
-    const input = pageMounted.find('input[type="checkbox"]')
+    const input = upperFormMounted.find('input[type="checkbox"]')
     expect(input.length).toBe(1);
   });
 
   test('it should render the type of agent', () => {
-    const wrapper = mount(<div className="form-agent-type"/>);
-    expect(wrapper.find(".form-agent-type").exists()).toBe(true)
+    const wrapper = mount(<div className="formAgentType"/>);
+    expect(wrapper.find(".formAgentType").exists()).toBe(true)
   });
 });

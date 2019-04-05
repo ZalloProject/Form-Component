@@ -8,13 +8,14 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest --coverage",
-    "react-dev": "webpack -d --watch",
+    "start": "node src/server.js",
     "server-dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "react-dev": "webpack -d --watch",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
+    "aws-sdk": "^2.436.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "css-loader": "^2.1.1",
@@ -22,6 +23,7 @@
     "mongoose": "^5.4.20",
     "mongoose-simple-random": "^0.4.1",
     "node-fetch": "^2.3.0",
+    "nodemon": "^1.18.10",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-star-rating-component": "^1.4.1",
