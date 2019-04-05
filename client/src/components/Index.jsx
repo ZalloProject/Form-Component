@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import UpperForm from '../src/components/UpperForm.jsx'
-import LowerForm from '../src/components/LowerForm.jsx'
+import UpperForm from './UpperForm.jsx'
+import LowerForm from './LowerForm.jsx'
 import style from './components/style.css'
 
-class App extends React.Component {
+class Index extends React.Component {
   constructor(){
     super()
     this.state = {
@@ -40,4 +39,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('form-service'))
+export default Index
