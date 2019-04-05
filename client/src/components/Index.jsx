@@ -22,7 +22,6 @@ class Index extends React.Component {
         agents: agentData
       })
     })
-    .catch(e => console.log(e))
   };
 
   render(){

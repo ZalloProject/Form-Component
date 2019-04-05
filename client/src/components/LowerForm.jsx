@@ -2,7 +2,7 @@ import React from 'react'
 import StarRatingComponent from 'react-star-rating-component';
 import style from './style.css'
 
-const LowerForm = ({agents}) => {
+const LowerForm = ({agents = []}) => {
   return (
   <div className={style.formInnerLowerContainer}> 
     {agents.map((agent, idx) => {

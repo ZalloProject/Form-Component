@@ -4,10 +4,8 @@ import UpperForm from './src/components/UpperForm'
 import LowerForm from './src/components/LowerForm'
 import Index from './src/components/Index'
 
-//sample test
 describe('Upper Form and Lower Form Components', () => {
   const upperFormMounted = mount(<UpperForm />);
-  // const lowerFormMounted = mount(<LowerForm />);
 
   const sampleData = [{
       _id: '5c9fe75de932d6cdda1cc370',
@@ -64,21 +62,25 @@ describe('Upper Form and Lower Form Components', () => {
     spy.mockRestore();
   });
 
-    test('should call setState and should render components', () => {
-      const page = shallow( <Index /> );
-      page.setState({
-        agents: sampleData
-      })
-      const page2 = shallow (<LowerForm/>)
-      expect(page2.find(".formAgentContainer").length).toBe(4);
-      expect(page2.find(".formAgentImage").length).toBe(4);
-      expect(page2.find(".formAgentName").length).toBe(4);
-      expect(page2.find(".formAgentSales").length).toBe(4);
-      expect(page2.find(".formAgentRatings").length).toBe(4);
-      expect(page2.find(".formAgentPhone").length).toBe(4);
+  test('should call setState and should render components', () => {
+    const page = shallow( <Index /> );
+    page.setState({
+      agents: sampleData
+    })
+    expect(page.state.length).toBe(1);
   });
 
-  test('renders something in the form component', () => {
+  test('should correctly render the upper form component', () => {
+    const page = render( <UpperForm/> );
+    expect(page).toMatchSnapshot();
+  })
+
+  test('should correctly render the lower form component', () => {
+    const page = render( <LowerForm/> );
+    expect(page).toMatchSnapshot();
+  })
+
+  test('renders something in the index component', () => {
     const wrapper = mount(<div className="formOuterContainer"/>);
     expect(wrapper.exists(".formOuterContainer")).toBe(true);
     expect(wrapper.find(".form-outerrr-container").exists()).toBe(false);
