@@ -1,11 +1,12 @@
 import React from 'react'
 import UpperForm from './UpperForm.jsx'
 import LowerForm from './LowerForm.jsx'
-import style from './components/style.css'
+import style from './style.css'
+import fetch from 'node-fetch'
 
 class Index extends React.Component {
-  constructor(){
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       agents: [],
     }

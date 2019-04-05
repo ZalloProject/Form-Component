@@ -1,11 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Index from './components/Index'
+import Index from './components/index.jsx'
 
 class App extends React.Component {
-  constructor() {
-    super()
-  }
   render() {
     return (<div>
       <Index />
