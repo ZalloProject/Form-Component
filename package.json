@@ -11,7 +11,8 @@
     "start": "node src/server.js",
     "server-dev": "nodemon src/server.js",
     "react-dev": "webpack -d --watch",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "prod-build": "webpack --mode production"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",

@@ -3,25 +3,6 @@ var path = require('path');
 module.exports = {
   entry: path.join(__dirname, '/client/src/app.jsx'),
   mode: 'production',
-  optimization: {
-    namedModules: false,
-    namedChunks: false,
-    nodeEnv: 'production',
-    flagIncludedChunks: true,
-    occurrenceOrder: true,
-    sideEffects: true,
-    usedExports: true,
-    concatenateModules: true,
-    splitChunks: {
-      hidePathInfo: true,
-      minSize: 30000,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-    },
-    noEmitOnErrors: true,
-    checkWasmTypes: true,
-    minimize: true,
-  },
   module: {
     rules: [
       {
